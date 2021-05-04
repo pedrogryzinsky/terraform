@@ -1,0 +1,41 @@
+{
+  "cSpell.language": "en,pt",
+  "cSpell.words": [
+    "awscli",
+    "azuretools",
+    "chktex",
+    "devcontainer",
+    "donjayamanne",
+    "eamodio",
+    "esbenp",
+    "githistory",
+    "githubusercontent",
+    "gitlens",
+    "gnupg",
+    "gruntfuggly",
+    "hashicorp",
+    "HISTFOLDER",
+    "idocs",
+    "latexindent",
+    "libmysqlclient",
+    "mkdirp",
+    "PKGS",
+    "procps",
+    "pwsh",
+    "readonly",
+    "rlwrap",
+    "shardulm",
+    "socialab",
+    "stkb",
+    "streetsidesoftware",
+    "tmpfs",
+    "tsmerge",
+    "tzdata",
+    "USERPROFILE",
+    "visualstudio",
+    "vsmarketplacebadge"
+  ],
+  "cSpell.enableFiletypes": [
+    "tfvars"
+  ]
+}

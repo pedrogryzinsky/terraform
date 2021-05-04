@@ -1,0 +1,100 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.177.0/containers/javascript-node
+{
+  "name": "Infrastructure",
+  "build": {
+    "dockerfile": "Dockerfile",
+    // Update 'VARIANT' to pick a Node version: 12, 14, 16
+    "args": {
+      "PKGS": "software-properties-common tzdata yum-utils jq libmysqlclient21 curl awscli gnupg2 procps wget rlwrap",
+      "GLOBAL_MODULES": "npm@latest yarn@latest",
+      // Update volume mount if changing history folder
+      "HISTFOLDER": "/history",
+    },
+  },
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "files": {
+      "eol": "\n",
+    },
+    // Latex settings
+    "latex-workshop.chktex.enabled": true,
+    "latex-workshop.latex.clean.subfolder.enabled": true,
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "editor.formatOnSave": true,
+    "files.associations": {
+      "*.tex": "latex"
+    },
+    "latex-workshop.latexindent.args": [
+      "-c",
+      "%DIR%/",
+      "%TMPFILE%",
+      "-y=\"defaultIndent: '%INDENT%',onlyOneBackUp: 1\""
+    ],
+    // Terminal settings
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.profiles.linux": {
+      "bash": {
+        "path": "/bin/bash"
+      },
+      "zsh": {
+        "path": "/bin/zsh"
+      },
+      "fish": {
+        "path": "fish"
+      },
+      "tmux": {
+        "path": "tmux",
+        "icon": "terminal-tmux"
+      },
+      "pwsh": {
+        "path": "pwsh",
+        "icon": "terminal-powershell"
+      }
+    }
+  },
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    // Text
+    "stkb.rewrap",
+    "shardulm94.trailing-spaces",
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-portuguese",
+    "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+    // Formatting
+    "esbenp.prettier-vscode",
+    // Work Management
+    "gruntfuggly.todo-tree",
+    // Git
+    "eamodio.gitlens",
+    "donjayamanne.githistory",
+    // Docker
+    "ms-azuretools.vscode-docker",
+    // Terraform
+    "hashicorp.terraform",
+    // Latex
+    "james-yu.latex-workshop",
+  ],
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "mounts": [
+    "source=socialab-idocs-history,target=/history,type=volume",
+    "source=socialab-idocs-modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}\\.ssh,target=/home/node/.ssh,type=bind,readonly",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}\\.ssh,target=/root/.ssh,type=bind,readonly",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}\\.aws,target=/home/node/.aws,type=bind,readonly",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}\\.aws,target=/root/.aws,type=bind,readonly",
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind,readonly",
+    "target=/tmp,type=tmpfs",
+  ],
+  "containerEnv": {
+    "AWS_PROFILE": "unidas-rac"
+  },
+  "postCreateCommand": "sudo chown -R node ${containerWorkspaceFolder}",
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "node"
+}

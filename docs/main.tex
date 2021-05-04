@@ -1,0 +1,90 @@
+% !TeX root = ./main.tex
+\documentclass[12pt, a4paper]{report}
+
+%encoding
+%--------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%--------------------------------------
+
+%Portuguese-specific commands
+%--------------------------------------
+\usepackage[portuguese]{babel}
+%-------
+
+% Glossaries
+\usepackage[acronym]{glossaries}
+\makeglossaries{}
+
+\newacronym{bu}{BU}{Business Unit}
+
+%--------------------------------------
+%begin document
+\begin{document}
+
+\title{Documentação Geral de Infraestrutura em Nuvem Pública da Plataforma SociaLab}
+\author{SociaLab, ZRP}
+\date{\today}
+
+\maketitle{}
+\tableofcontents{}
+
+\printglossary[type=\acronymtype]
+
+\printglossary{}
+
+
+\printglossary[type=\acronymtype]
+
+\begin{abstract}
+	Este é um breve resumo do conteúdo do documento escrito em Português.
+\end{abstract}
+
+\chapter{Convenções}
+
+Neste capítulo são abordadas as principais convenções adotadas na confecção da infraestrutura em nuvem, bem como os aspectos organizacionais envolvidos e a melhor forma de gerenciá-los.
+
+\section{Organização}
+
+A organização é a macroestrutura responsável pela gestão de uma ou mais contas em nuvem, podendo diferentes contas corresponderem à áreas ou \acrshort{bu}'s (\acrlong{bu}).
+
+\section{Tags}
+
+As tags permitem organizar recursos da infraestrutura e elementos organizacionais adjacentes.
+
+Isso permite um controle e visão mais granulares desses recursos, como custo, além de permitir a remoção de múltiplos elementos de uma única vez, ou clarificar os responsáveis por um recurso ou organizações associadas ao recurso.
+
+Dado isso, as tags são separadas da seguinte forma:
+
+\begin{table}
+	\begin{center}
+		\begin{tabular}{ |c|c|c|c| }
+			\hline
+			col1 & col2 & col3 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Exemplo}
+	\label{table:1}
+\end{table}
+
+A estrutura das tags segue por princípio a seguinte estrutura:
+
+prefixo, contexto, identificador, ex. socialab:application:id
+que identifica a qual aplicação a infraestrutura atual se referencia.
+
+\chapter{Estrutura e Componentes}
+
+\section{Visão Geral}
+
+\section{Rede}
+
+\section{Interface}
+\section{Servidores}
+\section{Serviços}
+\section{Dados}
+\section{Análise de Custos}
+
+\chapter{Conclusão}
+
+\end{document}
