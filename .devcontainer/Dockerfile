@@ -56,24 +56,9 @@ RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
     terraform --version && \
     terraform -install-autocomplete
 
-
-# Install LaTeX
-RUN apt-get update -q \
-    && apt-get install -qy build-essential wget libfontconfig1 \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install TexLive with scheme-basic
-RUN wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz; \
-    mkdir /install-tl-unx; \
-    tar -xvf install-tl-unx.tar.gz -C /install-tl-unx --strip-components=1; \
-    echo "selected_scheme scheme-basic" >> /install-tl-unx/texlive.profile; \
-    /install-tl-unx/install-tl -profile /install-tl-unx/texlive.profile; \
-    rm -r /install-tl-unx; \
-    rm install-tl-unx.tar.gz
-
-# Rewrite ENV 
-ENV PATH="/usr/local/texlive/2017/bin/x86_64-linux:${PATH}"
-ENV TZ=
-
-# Install latex packages
-RUN tlmgr install latexmk && tlmgr install scheme-full
+# Fix Latex Workshop format
+RUN cpan Log::Log4perl && \
+    cpan Log::Dispatch && \
+    cpan YAML::Tiny && \
+    cpan File::HomeDir && \
+    cpan Unicode::GCString

@@ -1,0 +1,26 @@
+{
+  "name": "@socialab/idocs",
+  "version": "1.0.0",
+  "description": "This repository implements both infrastructure documentation, assets and configuration files.",
+  "homepage": "https://bitbucket.org/socialabbr/idocs#readme",
+  "author": "ZRP <zrp@zrp.com.br>",
+  "license": "UNLICENSED",
+  "keywords": ["terraform", "latex", "iac", "iaas", "aws"],
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/socialabbr/idocs.git"
+  },
+  "bugs": {
+    "url": "https://bitbucket.org/socialabbr/idocs/issues"
+  },
+  "scripts": {
+    "staging:backend": "terraform -chdir=tfstate init && terraform -chdir=tfstate plan && terraform -chdir=tfstate apply -auto-approve",
+    "staging:init": "terraform -chdir=terraform init -backend-config=../config/staging.conf",
+    "staging:plan": "terraform -chdir=terraform plan -out=plan.bin",
+    "staging:apply": "terraform -chdir=terraform apply -auto-approve plan.bin",
+    "deploy:outputs": "terraform -chdir=terraform output"
+  }
+}

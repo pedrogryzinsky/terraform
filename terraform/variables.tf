@@ -4,22 +4,24 @@
 # Configure deployment region
 variable "region" {
   description = "AWS Deployment Region"
-  default = "us-east-1"
+  default     = "us-east-1"
 }
 
-# Configure deployment profile
-variable "profile" {
-  description = "AWS Deployment Profile"
-  default = "default"
+variable "azs" {
+  description = "AWS Availability Zones"
+  type        = list(string)
+  default     = ["us-east-1c", "us-east-1f"]
 }
+
+
 
 # Configure deployment stage
 variable "stage" {
   description = "Deployment Stage (staging, production)"
-  default = "staging"
+  default     = "staging"
 
   validation {
-    condition = can(regex("^(staging|production)", var.stage))
+    condition     = can(regex("^(staging|production)", var.stage))
     error_message = "The deployment stage must be one of the following: (staging, production). Change your terraform.tfvars to match."
   }
 }
@@ -30,12 +32,12 @@ variable "vpc_cidr" {
 }
 
 variable "public_subnets_cidr" {
-  type        = list
+  type        = list(any)
   description = "The CIDR block for the public subnet"
 }
 
 variable "private_subnets_cidr" {
-  type        = list
+  type        = list(any)
   description = "The CIDR block for the private subnet"
 }
 

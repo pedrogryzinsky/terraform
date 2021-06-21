@@ -6,7 +6,8 @@
     "dockerfile": "Dockerfile",
     // Update 'VARIANT' to pick a Node version: 12, 14, 16
     "args": {
-      "PKGS": "software-properties-common tzdata yum-utils jq libmysqlclient21 curl awscli gnupg2 procps wget rlwrap",
+      "VARIANT": "16",
+      "PKGS": "build-essential libfontconfig1 software-properties-common tzdata yum-utils jq default-mysql-client curl awscli gnupg2 procps wget texlive-full python-pygments gnuplot",
       "GLOBAL_MODULES": "npm@latest yarn@latest",
       // Update volume mount if changing history folder
       "HISTFOLDER": "/history",
@@ -14,23 +15,64 @@
   },
   // Set *default* container specific settings.json values on container create.
   "settings": {
+    // Editor
+    "editor.formatOnSave": true,
+    // Files
     "files": {
+      "associations": {
+        "*.tex": "latex"
+      },
       "eol": "\n",
+      "[bibtex]": {
+        "editor.formatOnSave": false,
+      },
+      "[latex]": {
+        "editor.formatOnSave": false,
+      },
     },
     // Latex settings
     "latex-workshop.chktex.enabled": true,
     "latex-workshop.latex.clean.subfolder.enabled": true,
     "latex-workshop.latex.autoClean.run": "onBuilt",
     "latex-workshop.latex.autoBuild.run": "onSave",
-    "editor.formatOnSave": true,
-    "files.associations": {
-      "*.tex": "latex"
-    },
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.latex.watch.usePolling": true,
+    "latex-workshop.latex.recipe.default": "pdflatex, makeglossaries, pdflatex (2x)",
     "latex-workshop.latexindent.args": [
       "-c",
       "%DIR%/",
       "%TMPFILE%",
       "-y=\"defaultIndent: '%INDENT%',onlyOneBackUp: 1\""
+    ],
+    "latex-workshop.latex.recipes": [
+      {
+        "name": "pdflatex, makeglossaries, pdflatex (2x)",
+        "tools": [
+          "pdflatex",
+          "makeglossaries",
+          "pdflatex",
+          "pdflatex"
+        ]
+      },
+    ],
+    "latex-workshop.latex.tools": [
+      {
+        "name": "pdflatex",
+        "command": "pdflatex",
+        "args": [
+          "-synctex=1",
+          "-interaction=nonstopmode",
+          "-file-line-error",
+          "%DOC%"
+        ]
+      },
+      {
+        "name": "makeglossaries",
+        "command": "makeglossaries",
+        "args": [
+          "%DOCFILE%"
+        ]
+      }
     ],
     // Terminal settings
     "terminal.integrated.defaultProfile.linux": "zsh",
@@ -89,12 +131,12 @@
     "target=/tmp,type=tmpfs",
   ],
   "containerEnv": {
-    "AWS_PROFILE": "unidas-rac"
+    "AWS_PROFILE": "socialab-developer"
   },
+  // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "sudo chown -R node ${containerWorkspaceFolder}",
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
-  // Use 'postCreateCommand' to run commands after the container is created.
   // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   "remoteUser": "node"
 }
