@@ -3,3 +3,7 @@ output "db_password" {
   value = module.database.db_password
   sensitive = true
 }
+
+output "repository_url" {
+  value = module.service.
+}

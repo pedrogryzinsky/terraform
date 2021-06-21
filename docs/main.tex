@@ -119,7 +119,7 @@ Para atingir tais objetivos, a arquitetura foi então desenhada compartimentando
 
 Neste capítulo são abordadas as principais convenções adotadas na confecção da infraestrutura em nuvem, bem como os aspectos organizacionais envolvidos e a melhor forma de gerenciá-los.
 
-\subsection{\acrshort{aws} Organizations}
+\subsection{AWS Organizations}
 
 A organização é a macroestrutura responsável pela gestão de uma ou mais contas em nuvem, podendo diferentes contas corresponderem à áreas ou \acrshort{bu}'s (\acrlong{bu}).
 
@@ -131,23 +131,23 @@ Isso permite um controle e visão mais granulares desses recursos, como custo, a
 
 Dado isso, as tags são separadas da seguinte forma:
 
-\begin{table}
-	\begin{center}
-		\begin{tabular}{ |c|c|c|c| }
-			\hline
-			col1 & col2 & col3 \\
-			\hline
-		\end{tabular}
-	\end{center}
-	\caption{Exemplo}\label{table:1}
-\end{table}
+% \begin{table}
+% 	\begin{center}
+% 		\begin{tabular}{ |c|c|c|c| }
+% 			\hline
+% 			col1 & col2 & col3 \\
+% 			\hline
+% 		\end{tabular}
+% 	\end{center}
+% 	\caption{Exemplo}\label{table:1}
+% \end{table}
 
 A estrutura das tags segue por princípio a seguinte estrutura:
 
-prefixo, contexto, identificador, ex. socialab:application:id
+prefixo, contexto, identificador, ex.socialab:application:id
 que identifica a qual aplicação a infraestrutura atual se referencia.
 
-\section{Provedor de \acrshort{iac}}
+\section{Provedor de IaC}
 \section{Replicabilidade}
 \section{Segurança}
 \chapter{Módulos}
