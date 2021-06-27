@@ -16,13 +16,14 @@ terraform {
 
 # Declare Providers
 provider "aws" {
-  region = var.region
+  region = var.aws_region
 
   default_tags {
     tags = {
-      "socialab:application:name"     = "socialab"
-      "socialab:application:stage"    = var.stage
-      "socialab:deployment:terraform" = true
+      "socialab:application:name"       = var.application_name
+      "socialab:application:stage"      = var.stage
+      "socialab:application:repository" = var.repository_url
+      "socialab:deployment:terraform"   = true
     }
   }
 }

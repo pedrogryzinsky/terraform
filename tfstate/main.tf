@@ -7,12 +7,12 @@ variable "region" {
 }
 
 variable "stage" {
-  description = "Deployment Stage (staging, production)"
+  description = "Deployment Stage (staging, prod)"
   default     = "staging"
 
   validation {
-    condition     = can(regex("^(staging|production)", var.stage))
-    error_message = "The deployment stage must be one of the following: (staging, production). Change your terraform.tfvars to match."
+    condition     = can(regex("^(staging|prod)", var.stage))
+    error_message = "The deployment stage must be one of the following: (staging, prod). Change your terraform.tfvars to match."
   }
 }
 
@@ -31,7 +31,7 @@ terraform {
 # ------------------------------------------------------------------------------
 
 provider "aws" {
-  region = var.region
+  region = var.aws_region
 
   default_tags {
     tags = {

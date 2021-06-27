@@ -69,3 +69,38 @@ module "db" {
     },
   ]
 }
+
+resource "aws_ssm_parameter" "db_password" {
+  name        = "/${var.stage}/socialab/DB_PASSWORD"
+  description = "The Database Master Password"
+  type        = "SecureString"
+  value       = random_password.password.result
+}
+
+# TODO: Fix here, db_instance_endpoint contains also the port
+resource "aws_ssm_parameter" "db_host" {
+  name        = "/${var.stage}/socialab/DB_HOST"
+  description = "The Database Master Password"
+  type        = "String"
+  value       = module.db.db_instance_endpoint
+}
+
+
+resource "aws_ssm_parameter" "db_port" {
+  name        = "/${var.stage}/socialab/DB_PORT"
+  description = "The Database Port"
+  type        = "String"
+  value       = module.db.db_instance_port
+}
+
+
+resource "aws_ssm_parameter" "db_user" {
+  name        = "/${var.stage}/socialab/DB_USER"
+  description = "The Database User"
+  type        = "String"
+  value       =  module.db.db_instance_username
+}
+
+
+
+

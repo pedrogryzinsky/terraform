@@ -3,6 +3,6 @@ variable "public_key" {
 }
 
 variable "stage" {
-  description = "Deployment Stage (staging, production)"
+  description = "Deployment Stage (staging, prod)"
 }
 

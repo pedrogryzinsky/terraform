@@ -19,8 +19,12 @@
   "scripts": {
     "staging:backend": "terraform -chdir=tfstate init && terraform -chdir=tfstate plan && terraform -chdir=tfstate apply -auto-approve",
     "staging:init": "terraform -chdir=terraform init -backend-config=../config/staging.conf",
-    "staging:plan": "terraform -chdir=terraform plan -out=plan.bin",
-    "staging:apply": "terraform -chdir=terraform apply -auto-approve plan.bin",
+    "staging:plan": "terraform -chdir=terraform plan -out=staging.bin",
+    "staging:apply": "terraform -chdir=terraform apply -auto-approve staging.bin",
+        "prod:backend": "terraform -chdir=tfstate init && terraform -chdir=tfstate plan && terraform -chdir=tfstate apply -auto-approve",
+        "prod:init": "terraform -chdir=terraform init -backend-config=../config/prod.conf",
+        "prod:plan": "terraform -chdir=terraform plan -out=prod.bin",
+        "prod:apply": "terraform -chdir=terraform apply -auto-approve prod.bin",
     "deploy:outputs": "terraform -chdir=terraform output"
   }
 }

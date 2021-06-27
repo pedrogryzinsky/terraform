@@ -1,5 +1,5 @@
 variable "stage" {
-  description = "Deployment Stage (staging, production)"
+  description = "Deployment Stage (staging, prod)"
 }
 
 variable "cluster_id" {
@@ -16,6 +16,6 @@ variable "security_groups" {
 }
 
 variable "target_group_arns" {
-  type = list(string)
+  type    = list(string)
   default = []
 }

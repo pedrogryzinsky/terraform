@@ -1,5 +1,5 @@
 variable "stage" {
-  description = "Deployment Stage (staging, production)"
+  description = "Deployment Stage (staging, prod)"
 }
 
 variable "security_groups" {

@@ -5,5 +5,5 @@ output "db_password" {
 }
 
 output "repository_url" {
-  value = module.service.
+  value = module.service.repository_url
 }
